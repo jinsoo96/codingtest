@@ -6,6 +6,8 @@ def solution(N, stages):
     for i in stages:
         len_clear[i]+=1
     
+    
+    
     stage_ing = []
     inguser = len_stages 
     
@@ -16,17 +18,17 @@ def solution(N, stages):
         if ind in [0,N+1]:
             continue
         if inguser ==0:
-            stage_ing.append((ind,0))  #실패율 0정의 해버리기 
+            stage_ing.append((ind,0))  
             continue
         stage_ing.append((ind,looser/inguser))
-        inguser -= looser # 길이줄여서 다시 위 포문으로 둘려버리기 
+        inguser -= looser # 길이줄여서 다시 위 포문으로 돌려버리기 
         
         
         
-    stage_ing = sorted(stage_ing,key = lambda info : info[1], reverse = True) #실패율 정렬 
+    stage_ing = sorted(stage_ing,key = lambda info : (-info[1],info[0])) #실패율 정렬 
     
     for info in stage_ing:
-        answer.append(info[0])
+        answer.append(info[0]) #뒤집음
         
         
         
