@@ -1,6 +1,14 @@
 def solution(num_list):
-    answer= -1
+    answer  = [-1]
+    a = answer[0]
     for idx, num in enumerate(num_list):
         if num < 0:
-            return idx
-    return answer
+            answer.append(idx)
+    
+    if len(answer) >1:
+        a = answer[1]
+        
+
+    
+        
+    return a
