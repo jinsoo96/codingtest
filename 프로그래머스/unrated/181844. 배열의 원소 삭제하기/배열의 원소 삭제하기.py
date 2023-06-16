@@ -1,4 +1,6 @@
 def solution(arr, delete_list):
-   
-    
-    return [x for x in arr if x not in delete_list]
+    answer = []
+    for i in range(len(arr)):
+        if arr[i] not in delete_list:
+            answer.append(arr[i])
+    return answer
