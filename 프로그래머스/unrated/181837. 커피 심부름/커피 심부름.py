@@ -1,15 +1,18 @@
-
 def solution(order):
-    total = 0
+    menu = {
+        "iceamericano": 4500, 
+        "americanoice": 4500, 
+        "hotamericano": 4500, 
+        "americanohot": 4500, 
+        "icecafelatte": 5000, 
+        "cafelatteice": 5000, 
+        "hotcafelatte": 5000, 
+        "cafelattehot": 5000, 
+        "americano": 4500, 
+        "cafelatte": 5000, 
+        "anything": 4500
+    }
+    total_price = 0
     for o in order:
-        if o in ["iceamericano", "americanoice", "americano", "anything"]:
-            total += 4500
-        elif o in ["icecafelatte", "cafelatteice", "cafelatte", "hotcafelatte", "cafelattehot"]:
-            total += 5000
-        else:
-            total += 4500 
-    return total
-
-
-
-
+        total_price += menu[o]
+    return total_price
