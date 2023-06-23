@@ -1,10 +1,8 @@
 def solution(myString):
-  answer=''
-
-  for i in myString:
-    if i < 'l':
-      answer += 'l'
+  result = ""
+  for char in myString:
+    if char < 'l':
+      result +='l'
     else:
-      answer += i
-
-  return answer
+      result += char
+  return result
