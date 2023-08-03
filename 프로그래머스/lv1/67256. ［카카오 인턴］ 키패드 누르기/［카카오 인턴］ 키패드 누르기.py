@@ -1,42 +1,47 @@
+#두 점간의 맨해튼거리 추출
+def dis(a,b):
+    a1 = a[0]-b[0]
+    a2 = a[1]-b[1]
+    if a1<0:
+        a1 = -a1
+    if a2<0:
+        a2 = -a2
+    return a1+a2
+#결과 반환 LR 반환
 def solution(numbers, hand):
     answer = ''
-    dic = {1: [0, 0], 2: [0, 1], 3: [0, 2],4: [1, 0], 5: [1, 1], 6: [1, 2],7: [2, 0],8: [2, 1], 9: [2, 2],'*':[3, 0], 0: [3, 1], '#': [3, 2]}
+    res= []
+    pad = [(1,0)]
+    left = (0,0) # *초기
+    right = (2,0) # # 초기
     
-    left_s = dic['*']
-    right_s = dic['#']
-    
-    for i in numbers:
-        now = dic[i]
-        if i in [1, 4, 7]:
-            answer += 'L'
-            left_s = now
-        elif i in [3, 6, 9]:
-            answer += 'R'
-            right_s = now
+    for i in range(9):
+        pad.append((i%3,3-i//3))  #1은 (1,0) 2는 (2,0) 처럼 표현하기 
+        
+    length = len(numbers)
+    for i in range(length):
+        t = numbers[i]
+        
+        if t==1 or t==4 or t==7:
+            res.append("L")
+            left = pad[t]
+        elif t == 3 or t==6 or t==9:
+            res.append("R")
+            right = pad[t]
+            
         else:
-            left_d = 0
-            right_d = 0
-            
-            for a, b, c in zip(left_s, right_s, now):
-                left_d += abs(a-c)
-                right_d += abs(b-c)
-            
-            if left_d < right_d:
-                answer += 'L'
-                left_s = now
-                
-            elif left_d > right_d:
-                answer += 'R'
-                right_s = now
-            
+            if(dis(pad[t],left)>dis(pad[t],right)):
+                res.append("R")
+                right = pad[t]
+            elif(dis(pad[t],left)<dis(pad[t],right)):
+                res.append("L")
+                left = pad[t]
             else:
-                
-                if hand == 'left':
-                        answer += 'L'
-                        left_s = now
-                    
+                if hand[0]=="l":
+                    res.append("L")
+                    left = pad[t]
                 else:
-                        answer += 'R'
-                        right_s = now
-            
+                    res.append("R")
+                    right = pad[t]
+    answer = ''.join(res)
     return answer
