@@ -17,7 +17,6 @@ def solution(numbers, hand):
             left_d = 0
             right_d = 0
             
-            #거리 비교 (두엄지 손가락의 거리가 같다  now 와 비교 )
             for a, b, c in zip(left_s, right_s, now):
                 left_d += abs(a-c)
                 right_d += abs(b-c)
